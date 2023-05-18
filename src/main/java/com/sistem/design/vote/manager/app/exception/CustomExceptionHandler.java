@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.validation.ConstraintViolationException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,11 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(InvalidDateException.class)
     public ResponseEntity<?> invalidDate(InvalidDateException e, WebRequest request) {
         return handleException("Error while parsing the Date", e, request, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<?> invalidContraint(ConstraintViolationException e, WebRequest request) {
+        return handleException("Invalid Constraint", e, request, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(DatabaseException.class)

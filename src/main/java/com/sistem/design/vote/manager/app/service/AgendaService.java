@@ -1,8 +1,8 @@
-package com.sistem.design.vote.manager.app.services;
+package com.sistem.design.vote.manager.app.service;
 
 import com.sistem.design.vote.manager.app.adapter.CpfValidatorAdapter;
 import com.sistem.design.vote.manager.app.dao.AgendaDAO;
-import com.sistem.design.vote.manager.app.dto.AgendaInsertDTO;
+import com.sistem.design.vote.manager.app.dto.InsertAgendaDTO;
 import com.sistem.design.vote.manager.app.exception.DatabaseException;
 import com.sistem.design.vote.manager.app.exception.ResourceNotFoundException;
 import com.sistem.design.vote.manager.app.mapper.AgendaMapper;
@@ -48,7 +48,7 @@ public class AgendaService {
      * @param agenda the agenda
      * @return the agenda
      */
-    public Agenda create(AgendaInsertDTO agenda) {
+    public Agenda create(InsertAgendaDTO agenda) {
         logger.info("creating Agenda: {}", agenda);
         return agendaDAO.save(AgendaMapper.getFromInsertDTO(agenda));
     }

@@ -1,8 +1,8 @@
 package com.sistem.design.vote.manager.app.mapper;
 
 
+import com.sistem.design.vote.manager.app.dto.InsertAgendaDTO;
 import com.sistem.design.vote.manager.app.model.Agenda;
-import com.sistem.design.vote.manager.app.dto.AgendaInsertDTO;
 import com.sistem.design.vote.manager.app.utils.DateUtils;
 
 import java.time.LocalDateTime;
@@ -12,10 +12,10 @@ public class AgendaMapper {
     private AgendaMapper() {
     }
 
-    public static Agenda getFromInsertDTO(AgendaInsertDTO dto) {
+    public static Agenda getFromInsertDTO(InsertAgendaDTO dto) {
         LocalDateTime startDate = DateUtils.parseDateFromString(dto.getStartDate());
         LocalDateTime endDate = DateUtils.setEndDateOrOneMinute(dto.getStartDate(), dto.getEndDate());
-        DateUtils.validateCreationDates(startDate,endDate);
+        DateUtils.validateCreationDates(startDate, endDate);
         return new Agenda()
                 .setStartDate(startDate)
                 .setEndDate(endDate)
