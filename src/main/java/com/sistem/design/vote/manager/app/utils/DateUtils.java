@@ -2,6 +2,7 @@ package com.sistem.design.vote.manager.app.utils;
 
 import com.sistem.design.vote.manager.app.exception.InvalidDateException;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -11,8 +12,8 @@ public class DateUtils {
     private DateUtils() {
     }
 
-
     public static LocalDateTime parseDateFromString(String date) {
+        Assert.notNull(date,"Date can't be empty");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         return LocalDateTime.parse(date, formatter);
     }

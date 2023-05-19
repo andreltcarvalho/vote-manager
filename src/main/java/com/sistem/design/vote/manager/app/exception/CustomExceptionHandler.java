@@ -38,6 +38,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return handleException("Error while parsing the Date", e, request, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<?> invalidDate(BusinessException e, WebRequest request) {
+        return handleException("Business Logic Error", e, request, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<?> invalidContraint(ConstraintViolationException e, WebRequest request) {
         return handleException("Invalid Constraint", e, request, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -24,7 +24,6 @@ public class Agenda {
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime startDate;
 
-    @Nullable
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime endDate;
 }

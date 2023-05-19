@@ -3,6 +3,7 @@ package com.sistem.design.vote.manager.app.mapper;
 
 import com.sistem.design.vote.manager.app.dto.VoteDTO;
 import com.sistem.design.vote.manager.app.model.Vote;
+import com.sistem.design.vote.manager.app.utils.BusinessUtils;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -15,6 +16,6 @@ public class VoteMapper {
         return new Vote()
                 .setVoteTime(LocalDateTime.now(ZoneId.systemDefault()))
                 .setUserCpf(dto.getCpf())
-                .setVoteResult(dto.getVoteResult());
+                .setVoteResult(BusinessUtils.validateAndReturnVoteResult(dto.getVoteResult()));
     }
 }
