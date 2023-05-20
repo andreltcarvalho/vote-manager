@@ -84,7 +84,7 @@ public class AgendaService {
      */
     @SneakyThrows
 
-    public Object updateVoteAgenda(Agenda agenda, Long agendaId) {
+    public Agenda updateVoteAgenda(Agenda agenda, Long agendaId) {
         logger.info("Updating Agenda with ID: {}.", agendaId);
         Agenda databaseAgenda = agendaDAO.findById(agendaId).orElseThrow(() -> new ResourceNotFoundException("Agenda", agendaId));
         //TODO: criar logica de update

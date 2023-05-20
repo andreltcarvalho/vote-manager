@@ -1,8 +1,11 @@
 package com.sistem.design.vote.manager.app.utils;
 
 import com.sistem.design.vote.manager.app.exception.BusinessException;
+import com.sistem.design.vote.manager.app.model.Agenda;
 import com.sistem.design.vote.manager.app.model.Vote;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 public class BusinessUtils {
@@ -17,6 +20,12 @@ public class BusinessUtils {
         } else if (vote.getVoteTime().isAfter(vote.getAgenda().getEndDate())) {
             throw new BusinessException(String.format("This Agenda was closed at %s. Is not possible to vote anymore.", vote.getAgenda().getEndDate()));
         }
+    }
+
+    public static boolean isSessionOpen(Agenda agenda) {
+        LocalDateTime now = LocalDateTime.now(ZoneId.systemDefault());
+        return now.isAfter(agenda.getStartDate()) && now.isBefore(agenda.getEndDate());
+
     }
 
     public static String validateAndReturnVoteResult(String voteResult) {

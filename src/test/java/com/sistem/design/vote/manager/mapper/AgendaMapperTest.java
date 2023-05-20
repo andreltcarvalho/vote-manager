@@ -1,39 +1,41 @@
 package com.sistem.design.vote.manager.mapper;
 
 import com.sistem.design.vote.manager.app.model.Agenda;
-import com.sistem.design.vote.manager.builder.TestEntityBuilder;
+import com.sistem.design.vote.manager.builder.AgendaTestEntityBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class AgendaMapperTest {
     Agenda expectedAgenda;
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    LocalDateTime now = AgendaTestEntityBuilder.getNow().plusMinutes(1);
+    LocalDateTime sessionEnd = AgendaTestEntityBuilder.getNow().plusMinutes(30);
+
 
     @BeforeEach
     void setup() {
         expectedAgenda = new Agenda()
                 .setId(1L)
                 .setVotes(new ArrayList<>())
-                .setStartDate(LocalDateTime.of(2023, 5, 19, 19, 0, 0))
-                .setEndDate(LocalDateTime.of(2023, 5, 19, 19, 30, 0));
+                .setStartDate(now.withNano(0))
+                .setEndDate(sessionEnd.withNano(0));
+    }
+
+
+    @Test
+    void testValidAgendaCreation() {
+        Assertions.assertEquals(expectedAgenda, AgendaTestEntityBuilder.buildTestAgendaWithDates(now, sessionEnd));
     }
 
     @Test
-    void testInsertValid() {
-        Assertions.assertEquals(expectedAgenda, TestEntityBuilder.buildSimpleTestAgenda());
-    }
-
-    @Test
-    void testInsertWithStartDateAndEndDate() {
-        Assertions.assertEquals(expectedAgenda, TestEntityBuilder.buildTestAgendaWithDates("19-05-2023 19:00:00", "19-05-2023 19:30:00"));
-    }
-
-    @Test
-    void testInsertWithOnlyStartDate() {
+    void testValidCreationtWithStartDateOnly() {
         expectedAgenda.setEndDate(expectedAgenda.getStartDate().plusMinutes(1));
-        Assertions.assertEquals(expectedAgenda, TestEntityBuilder.buildTestAgendaWithStartDate("19-05-2023 19:00:00"));
+        Assertions.assertEquals(expectedAgenda, AgendaTestEntityBuilder.buildTestAgendaWithStartDate(now));
     }
 }

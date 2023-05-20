@@ -2,7 +2,7 @@ package com.sistem.design.vote.manager.utils;
 
 import com.sistem.design.vote.manager.app.exception.InvalidDateException;
 import com.sistem.design.vote.manager.app.utils.DateUtils;
-import com.sistem.design.vote.manager.builder.TestEntityBuilder;
+import com.sistem.design.vote.manager.builder.VoteTestEntityBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ public class DateUtilsTest {
 
     @BeforeEach
     void setup() {
-        now = TestEntityBuilder.getNow();
+        now = VoteTestEntityBuilder.getNow();
     }
 
     @Test
@@ -45,9 +45,9 @@ public class DateUtilsTest {
 
     @Test
     public void testInvalidCreationDate() {
-        Throwable message = Assertions.assertThrows(InvalidDateException.class, () -> DateUtils.validateCreationDates(now.minusMinutes(5), TestEntityBuilder.getNow().plusMinutes(1)));
+        Throwable message = Assertions.assertThrows(InvalidDateException.class, () -> DateUtils.validateCreationDates(now.minusMinutes(5), VoteTestEntityBuilder.getNow().plusMinutes(1)));
         Assertions.assertTrue(message.getMessage().contains("can't happen before now"));
-        message = Assertions.assertThrows(InvalidDateException.class, () -> DateUtils.validateCreationDates(now, TestEntityBuilder.getNow().minusHours(1)));
+        message = Assertions.assertThrows(InvalidDateException.class, () -> DateUtils.validateCreationDates(now, VoteTestEntityBuilder.getNow().minusHours(1)));
         Assertions.assertTrue(message.getMessage().contains("can't happen before the start Date"));
     }
 }
