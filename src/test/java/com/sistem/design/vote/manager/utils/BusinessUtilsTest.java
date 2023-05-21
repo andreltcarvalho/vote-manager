@@ -17,7 +17,7 @@ public class BusinessUtilsTest {
 
     @Test
     void voteAfterTheAgendaHasClosed() {
-        Assertions.assertThrows(BusinessException.class, () -> BusinessUtils.validateIfTheSessionIsOpen(VoteTestEntityBuilder.buildSimpleVote(now.plusMinutes(15), sessionEnd.plusMinutes(18)).setVoteTime(now.plusMinutes(35))));
+        Assertions.assertThrows(BusinessException.class, () -> BusinessUtils.validateIfTheSessionIsOpen(VoteTestEntityBuilder.buildSimpleVote(now.plusMinutes(15), sessionEnd.plusMinutes(18)).setVoteTime(sessionEnd.plusMinutes(35))));
     }
 
     @Test

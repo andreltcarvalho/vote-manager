@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="RUN APPLICATION" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.sistem.design.vote.manager.app.ApiApplication" />
+    <module name="vote-manager" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

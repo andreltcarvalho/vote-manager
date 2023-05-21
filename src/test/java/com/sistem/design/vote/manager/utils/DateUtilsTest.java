@@ -45,9 +45,9 @@ public class DateUtilsTest {
 
     @Test
     public void testInvalidCreationDate() {
-        Throwable message = Assertions.assertThrows(InvalidDateException.class, () -> DateUtils.validateCreationDates(now.minusMinutes(5), VoteTestEntityBuilder.getNow().plusMinutes(1)));
+        Throwable message = Assertions.assertThrows(InvalidDateException.class, () -> DateUtils.validateCreationDates(now.minusMinutes(5), now.plusMinutes(1)));
         Assertions.assertTrue(message.getMessage().contains("can't happen before now"));
-        message = Assertions.assertThrows(InvalidDateException.class, () -> DateUtils.validateCreationDates(now, VoteTestEntityBuilder.getNow().minusHours(1)));
+        message = Assertions.assertThrows(InvalidDateException.class, () -> DateUtils.validateCreationDates(now,now.minusHours(1)));
         Assertions.assertTrue(message.getMessage().contains("can't happen before the start Date"));
     }
 }
