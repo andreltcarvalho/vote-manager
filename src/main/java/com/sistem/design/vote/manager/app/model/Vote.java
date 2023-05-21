@@ -26,7 +26,7 @@ public class Vote {
     @NotNull
     @Id
     @Size(min = 11, max = 11)
-    @Column(name = "cpf", unique = true)
+    @Column(name = "cpf")
     private String userCpf;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")

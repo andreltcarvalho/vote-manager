@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static com.sistem.design.vote.manager.app.utils.Constants.*;
 
 /**
  * The type Agenda mapper.
@@ -45,21 +46,19 @@ public class AgendaMapper {
      * @return DTO de leitura com novos atributos
      */
     public static AgendaResultDTO toAgendaResultDTO(Agenda agenda) {
-        Map<String, Long> voteCountMap =
-                agenda.getVotes()
-                        .stream()
-                        .collect(Collectors.groupingBy(Vote::getVoteResult, Collectors.counting()));
+        String status = BusinessUtils.isSessionOpen(agenda) ? OPEN : CLOSED;
+        Map<String, Long> voteCountMap = agenda.getVotes()
+                .stream()
+                .collect(Collectors.groupingBy(Vote::getVoteResult, Collectors.counting()));
 
-        long simCount = voteCountMap.getOrDefault("Sim", 0L);
-        long naoCount = voteCountMap.getOrDefault("Não", 0L);
+        long simCount = voteCountMap.getOrDefault(SIM, 0L);
+        long naoCount = voteCountMap.getOrDefault(NAO, 0L);
 
-        String result = Stream.of(simCount, naoCount)
-                .max(Long::compareTo)
-                .map(maxCount -> maxCount == simCount ? "APPROVED" : "NOT APPROVED")
-                .orElse("TIE");
+        String result = simCount > naoCount ? APPROVED : NOT_APPROVED;
+
         return new AgendaResultDTO()
-                .setResult(result)
-                .setStatus(BusinessUtils.isSessionOpen(agenda) ? "OPEN" : "CLOSED")
+                .setResult(OPEN.equals(status) ? ON_GOING : result)
+                .setStatus(status)
                 .setAgenda(agenda);
     }
 }

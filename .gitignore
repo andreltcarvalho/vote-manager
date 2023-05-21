@@ -1,6 +1,9 @@
 # IntelliJ IDEA
 .idea/
 
+# Banco de Dados de Teste/Dev
+.testdb/
+
 # Compiled Output
 target/
 

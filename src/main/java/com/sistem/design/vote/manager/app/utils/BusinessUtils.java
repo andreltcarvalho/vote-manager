@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 
+import static com.sistem.design.vote.manager.app.utils.Constants.*;
+
 public class BusinessUtils {
 
     private BusinessUtils() {
@@ -29,7 +31,7 @@ public class BusinessUtils {
     }
 
     public static String validateAndReturnVoteResult(String voteResult) {
-        List<String> possibleVotes = List.of("Sim", "Não");
+        List<String> possibleVotes = List.of(SIM, NAO);
         if (!possibleVotes.contains(voteResult)) {
             throw new BusinessException(String.format("The vote '%s' is invalid. The possible votes are: %s", voteResult, possibleVotes));
         }
