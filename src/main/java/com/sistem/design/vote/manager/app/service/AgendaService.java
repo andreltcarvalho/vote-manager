@@ -75,22 +75,6 @@ public class AgendaService {
         return agendaDAO.findById(agendaId).orElseThrow(() -> new ResourceNotFoundException("Agenda", agendaId));
     }
 
-    /**
-     * Update agenda object.
-     *
-     * @param agenda   entidade de Pauta com os atributos à serem atualizados
-     * @param agendaId id Interno da Pauta
-     * @return Pauta atualziada
-     */
-    @SneakyThrows
-
-    public Agenda updateVoteAgenda(Agenda agenda, Long agendaId) {
-        logger.info("Updating Agenda with ID: {}.", agendaId);
-        Agenda databaseAgenda = agendaDAO.findById(agendaId).orElseThrow(() -> new ResourceNotFoundException("Agenda", agendaId));
-        //TODO: criar logica de update
-        return agendaDAO.save(databaseAgenda);
-    }
-
     public void delete(Long agendaId) {
         logger.info("Deleting Agenda with ID: {}.", agendaId);
         try {

@@ -36,7 +36,9 @@ public class AgendaMapper {
         return new Agenda()
                 .setStartDate(startDate)
                 .setEndDate(endDate)
-                .setVotes(new ArrayList<>());
+                .setVotes(new ArrayList<>())
+                .setTitle(agendaDTO.getTitle())
+                .setDescription(agendaDTO.getDescription());
     }
 
     /**

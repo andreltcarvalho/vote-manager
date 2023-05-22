@@ -38,11 +38,10 @@ public class VoteService {
         return voteDAO.save(vote);
     }
 
-
     private void validateIfUserAlreadyVoted(Long agendaId, String cpf) {
         VoteId voteId = new VoteId().setAgenda(agendaId).setUserCpf(cpf);
         if (voteDAO.existsById(voteId)) {
-            throw new BusinessException(String.format("The user with cpf '%s' has already voted on the Agenda with id '%s'", cpf, agendaId));
+            throw new BusinessException("This user has already voted on the selected Agenda");
         }
     }
 }

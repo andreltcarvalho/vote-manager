@@ -45,11 +45,6 @@ public class AgendaController {
         return ResponseEntity.ok().body(agendaService.readAll());
     }
 
-    @PatchMapping("/{agendaId}")
-    public ResponseEntity<Agenda> updateAgenda(@NonNull @PathVariable Long agendaId, @NonNull @RequestBody Agenda agenda) {
-        return ResponseEntity.ok().body(agendaService.updateVoteAgenda(agenda, agendaId));
-    }
-
     @DeleteMapping("/{agendaId}")
     public ResponseEntity<?> deleteAgenda(@PathVariable Long agendaId) {
         agendaService.delete(agendaId);

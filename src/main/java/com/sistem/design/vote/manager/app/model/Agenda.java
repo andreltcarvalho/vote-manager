@@ -26,4 +26,7 @@ public class Agenda {
 
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime endDate;
+
+    private String title;
+    private String description;
 }

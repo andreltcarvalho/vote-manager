@@ -8,4 +8,6 @@ import lombok.experimental.Accessors;
 public class InsertAgendaDTO {
     private String startDate;
     private String endDate;
+    private String title;
+    private String description;
 }
