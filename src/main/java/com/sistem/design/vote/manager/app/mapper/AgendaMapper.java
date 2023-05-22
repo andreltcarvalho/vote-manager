@@ -4,16 +4,14 @@ package com.sistem.design.vote.manager.app.mapper;
 import com.sistem.design.vote.manager.app.dto.AgendaResultDTO;
 import com.sistem.design.vote.manager.app.dto.InsertAgendaDTO;
 import com.sistem.design.vote.manager.app.model.Agenda;
-import com.sistem.design.vote.manager.app.model.Vote;
 import com.sistem.design.vote.manager.app.utils.BusinessUtils;
 import com.sistem.design.vote.manager.app.utils.DateUtils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-import static com.sistem.design.vote.manager.app.utils.Constants.*;
+import static com.sistem.design.vote.manager.app.utils.Constants.ON_GOING;
+import static com.sistem.design.vote.manager.app.utils.Constants.OPEN;
 
 /**
  * The type Agenda mapper.
@@ -48,19 +46,14 @@ public class AgendaMapper {
      * @return DTO de leitura com novos atributos
      */
     public static AgendaResultDTO toAgendaResultDTO(Agenda agenda) {
-        String status = BusinessUtils.isSessionOpen(agenda) ? OPEN : CLOSED;
-        Map<String, Long> voteCountMap = agenda.getVotes()
-                .stream()
-                .collect(Collectors.groupingBy(Vote::getVoteResult, Collectors.counting()));
-
-        long simCount = voteCountMap.getOrDefault(SIM, 0L);
-        long naoCount = voteCountMap.getOrDefault(NAO, 0L);
-
-        String result = simCount > naoCount ? APPROVED : NOT_APPROVED;
+        String status = BusinessUtils.getStatusFromAgenda(agenda);
+        String result = BusinessUtils.getResultFromVoteList(agenda);
 
         return new AgendaResultDTO()
-                .setResult(OPEN.equals(status) ? ON_GOING : result)
+                .setResult(BusinessUtils.getResultByStatus(status, result))
                 .setStatus(status)
                 .setAgenda(agenda);
     }
+
+
 }

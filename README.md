@@ -9,21 +9,24 @@ Projeto feito para o teste prático da empresa SoftDesign.
 
 ## Como Iniciar a Aplicação
 
-1. No diretório .run existem duas configurações para build(maven clean install) e start(ApiApplication.run()) do
-   projeto.
+`No diretório .run existem duas configurações para build(maven clean install) e start(ApiApplication.run()) do
+projeto.`
 
 ## Coleção no Postman
 
-Uma coleção do Postman com as solicitações de API está disponível no arquivo `vote-manager-collection.json` na raiz do
-projeto. Você pode importar essa coleção no Postman e utilizá-la para testar as diferentes rotas da aplicação.
+`Uma coleção do Postman com as solicitações de API está disponível no arquivo `vote-manager-collection.json` na raiz do
+projeto. Você pode importar essa coleção no Postman e utilizá-la para testar as diferentes rotas da aplicação.`
 
 ## Banco de Dados
 
 O projeto utiliza dois perfis de ambiente no Spring: `dev` e `prod`.
 
-- Perfil `dev`: Nesse perfil, a aplicação utiliza o banco de dados H2 embutido. Ao subir a aplicação, será gerado um arquivo de banco de dados H2 está
-  localizado no diretório `.testdb` na raiz do projeto e será carregado automaticamente quando a aplicação for iniciada no
-  perfil de desenvolvimento. Acesse o BD pelo link do [H2 Console](http://localhost:8083/h2-console`)
+- Perfil `dev`: Nesse perfil, a aplicação utiliza o banco de dados H2 embutido. Ao subir a aplicação, será gerado um
+  arquivo de banco de dados H2 está
+  localizado no diretório `.testdb` na raiz do projeto e será carregado automaticamente quando a aplicação for iniciada
+  no
+  perfil de desenvolvimento. Com a aplicação no ar, acesse o BD pelo link
+  do [H2 Console](http://localhost:8083/h2-console`)
 
 ![Descrição da imagem](img/h2-console.png)
 
@@ -34,8 +37,8 @@ O projeto utiliza dois perfis de ambiente no Spring: `dev` e `prod`.
 
 ## Actuator
 
-A aplicação possui endpoints fornecidos pelo Spring Boot Actuator que permitem monitorar e gerenciar o estado da
-aplicação em tempo de execução. Alguns dos principais endpoints são:
+`A aplicação possui endpoints fornecidos pelo Spring Boot Actuator que permitem monitorar e gerenciar o estado da
+aplicação em tempo de execução. Alguns dos principais endpoints são:`
 
 - **/actuator/health**: Retorna o status de saúde da aplicação.
 - **/actuator/info**: Retorna informações sobre a aplicação.
@@ -47,8 +50,8 @@ As requisições do Actuator estão na coleção do Postman.
 
 ## Swagger
 
-A documentação da API também está disponível por meio do Swagger. Para acessar o Swagger, inicie a aplicação e acesse a
-seguinte URL no navegador: [Swagger](http://localhost:8083/swagger-ui/index.html#)
+`A documentação da API também está disponível por meio do Swagger. Para acessar o Swagger, inicie a aplicação e acesse a
+seguinte URL no navegador:` [Swagger](http://localhost:8083/swagger-ui/index.html#)
 
 ## Funcionamento da Aplicação
 
@@ -73,7 +76,6 @@ seguinte URL no navegador: [Swagger](http://localhost:8083/swagger-ui/index.html
       início da pauta ou após o horário de encerramento.
     - Cada usuário só pode votar uma vez em cada pauta, ou seja, apenas um voto por CPF é permitido para cada pauta.
 
-Após o usuário enviar seu voto, ele será registrado e contabilizado para a respectiva pauta.
 
 3. **Consulta de Pautas:**
 
@@ -98,4 +100,4 @@ Após o usuário enviar seu voto, ele será registrado e contabilizado para a re
 
        É possível excluir pautas existentes passando o seu ID como parâmetro.
    **Validações:**
-   - A Pauta precisa existir.
+    - A Pauta precisa existir.

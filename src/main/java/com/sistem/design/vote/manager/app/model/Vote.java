@@ -27,6 +27,7 @@ public class Vote {
     @Id
     @Size(min = 11, max = 11)
     @Column(name = "cpf")
+    @JsonIgnore
     private String userCpf;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")

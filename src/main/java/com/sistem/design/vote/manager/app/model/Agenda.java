@@ -1,10 +1,8 @@
 package com.sistem.design.vote.manager.app.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,8 +16,8 @@ public class Agenda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "agenda")
-    private List<Vote> votes;
+    private String title;
+    private String description;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime startDate;
@@ -27,6 +25,7 @@ public class Agenda {
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime endDate;
 
-    private String title;
-    private String description;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "agenda")
+    private List<Vote> votes;
+
 }
