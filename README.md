@@ -4,7 +4,7 @@ Projeto feito para o teste prático da empresa SoftDesign.
 
 ## Sobre o Projeto
 
-1. Tecnologias: Java11, SpringBoot, H2, MySQL, Swagger, Spring Data, Spring MVC.
+1. Tecnologias: Java11, JUnit, SpringBoot, H2, MySQL, Swagger, Spring Data, Spring MVC.
 2. IDE Utilizada: IntelliJ
 
 ## Como Iniciar a Aplicação
@@ -75,7 +75,8 @@ seguinte URL no navegador:` [Swagger](http://localhost:8083/swagger-ui/index.htm
     - Só é possível votar em pautas que estão abertas para votação. Ou seja, não é possível votar antes do horário de
       início da pauta ou após o horário de encerramento.
     - Cada usuário só pode votar uma vez em cada pauta, ou seja, apenas um voto por CPF é permitido para cada pauta.
-
+    - Há uma validação de CPF via endpoint, onde ele consulta se o CPF é válido ou não, mas como o endpoint não está no
+      ar, é possível habilitar um mock para simular a resposta desejada.
 
 3. **Consulta de Pautas:**
 

@@ -1,5 +1,6 @@
 package com.sistem.design.vote.manager.app.service;
 
+import com.sistem.design.vote.manager.app.adapter.CpfValidatorAdapter;
 import com.sistem.design.vote.manager.app.dao.VoteDAO;
 import com.sistem.design.vote.manager.app.dto.VoteDTO;
 import com.sistem.design.vote.manager.app.exception.BusinessException;
@@ -29,9 +30,13 @@ public class VoteService {
     @Autowired
     VoteDAO voteDAO;
 
+    @Autowired
+    CpfValidatorAdapter cpfValidatorAdapter;
+
     @SneakyThrows
     public Object insertVote(Long agendaId, @NonNull VoteDTO voteDto) {
         logger.info("Inserting new Vote in the Agenda with ID: {}.", agendaId);
+        cpfValidatorAdapter.validateCpf(voteDto.getCpf());
         validateIfUserAlreadyVoted(agendaId, voteDto.getCpf());
         Vote vote = VoteMapper.getVoteFromInsertDTO(voteDto).setAgenda(agendaService.findById(agendaId));
         BusinessUtils.validateIfTheSessionIsOpen(vote);
