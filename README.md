@@ -1,6 +1,6 @@
 # Vote Manager
 
-Projeto feito para o teste prático da empresa SoftDesign.
+Projeto com o intuito de simular pautas de votação.
 
 ## Sobre o Projeto
 
