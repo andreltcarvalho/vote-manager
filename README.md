@@ -4,7 +4,7 @@ Projeto com o intuito de simular pautas de votação.
 
 ## Sobre o Projeto
 
-1. Tecnologias: Java11, JUnit, SpringBoot, H2, MySQL, Swagger, Spring Data, Spring MVC.
+1. Tecnologias: Java11, JUnit, Cucumber, SpringBoot, H2, MySQL, Swagger, Spring Data, Spring MVC.
 2. IDE Utilizada: IntelliJ
 
 ## Como Iniciar a Aplicação

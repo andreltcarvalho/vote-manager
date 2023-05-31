@@ -23,7 +23,7 @@ public class AgendaTestEntityBuilder {
     /**
      * Formatador para manter as datas no padrão esperado
      */
-    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
     /**
      * Passando somente a data inicial o sistema considera um default de 1 minuto para a data final.
