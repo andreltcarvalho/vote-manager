@@ -1,5 +1,7 @@
 package com.sistem.design.vote.manager.mapper;
 
+import com.sistem.design.vote.manager.app.dto.AgendaResultDTO;
+import com.sistem.design.vote.manager.app.mapper.AgendaMapper;
 import com.sistem.design.vote.manager.app.model.Agenda;
 import com.sistem.design.vote.manager.builder.AgendaTestEntityBuilder;
 import org.junit.jupiter.api.Assertions;
@@ -9,6 +11,10 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import static com.sistem.design.vote.manager.app.utils.Constants.CLOSED;
+import static com.sistem.design.vote.manager.app.utils.Constants.NOT_APPROVED;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AgendaMapperTest {
     Agenda expectedAgenda;
@@ -30,12 +36,19 @@ public class AgendaMapperTest {
 
     @Test
     void testValidAgendaCreation() {
-        Assertions.assertEquals(expectedAgenda, AgendaTestEntityBuilder.buildTestAgendaWithDates(now, sessionEnd));
+        assertEquals(expectedAgenda, AgendaTestEntityBuilder.buildTestAgendaWithDates(now, sessionEnd));
     }
 
     @Test
     void testValidCreationtWithStartDateOnly() {
         expectedAgenda.setEndDate(expectedAgenda.getStartDate().plusMinutes(1));
-        Assertions.assertEquals(expectedAgenda, AgendaTestEntityBuilder.buildTestAgendaWithStartDate(now));
+        assertEquals(expectedAgenda, AgendaTestEntityBuilder.buildTestAgendaWithStartDate(now));
+    }
+
+    @Test
+    void testAgendaReadDTO() {
+        Agenda agenda = AgendaTestEntityBuilder.buildTestAgendaWithStartDate(now);
+        AgendaResultDTO expectedDTO = new AgendaResultDTO().setResult(NOT_APPROVED).setAgenda(agenda).setStatus(CLOSED);
+        assertEquals(expectedDTO,AgendaMapper.toAgendaResultDTO(agenda));
     }
 }

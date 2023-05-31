@@ -1,6 +1,7 @@
 package com.sistem.design.vote.manager.app.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Data
 @Entity
 @Accessors(chain = true)
+@EqualsAndHashCode(of = {"id", "title", "description"})
 public class Agenda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,9 +10,6 @@ import com.sistem.design.vote.manager.app.utils.DateUtils;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import static com.sistem.design.vote.manager.app.utils.Constants.ON_GOING;
-import static com.sistem.design.vote.manager.app.utils.Constants.OPEN;
-
 /**
  * The type Agenda mapper.
  */
@@ -54,6 +51,4 @@ public class AgendaMapper {
                 .setStatus(status)
                 .setAgenda(agenda);
     }
-
-
 }

@@ -1,9 +1,7 @@
 package com.sistem.design.vote.manager.app.service;
 
-import com.sistem.design.vote.manager.app.adapter.CpfValidatorAdapter;
 import com.sistem.design.vote.manager.app.dao.AgendaDAO;
 import com.sistem.design.vote.manager.app.dto.InsertAgendaDTO;
-import com.sistem.design.vote.manager.app.exception.DatabaseException;
 import com.sistem.design.vote.manager.app.exception.ResourceNotFoundException;
 import com.sistem.design.vote.manager.app.mapper.AgendaMapper;
 import com.sistem.design.vote.manager.app.model.Agenda;
@@ -12,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -29,13 +26,7 @@ public class AgendaService {
      * The Logger.
      */
     Logger logger = LoggerFactory.getLogger(AgendaService.class);
-
-    /**
-     * The Cpf validator adapter.
-     */
-    @Autowired
-    CpfValidatorAdapter cpfValidatorAdapter;
-
+    
     /**
      * The Agenda dao.
      */
@@ -81,8 +72,6 @@ public class AgendaService {
             agendaDAO.deleteById(agendaId);
         } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException("Agenda", agendaId);
-        } catch (DataIntegrityViolationException e) {
-            throw new DatabaseException(e.getMessage());
         }
     }
 }

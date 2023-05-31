@@ -34,7 +34,7 @@ public class VoteService {
     CpfValidatorAdapter cpfValidatorAdapter;
 
     @SneakyThrows
-    public Object insertVote(Long agendaId, @NonNull VoteDTO voteDto) {
+    public Vote insertVote(Long agendaId, @NonNull VoteDTO voteDto) {
         logger.info("Inserting new Vote in the Agenda with ID: {}.", agendaId);
         cpfValidatorAdapter.validateCpf(voteDto.getCpf());
         validateIfUserAlreadyVoted(agendaId, voteDto.getCpf());

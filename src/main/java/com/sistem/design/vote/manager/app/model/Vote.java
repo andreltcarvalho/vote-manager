@@ -2,6 +2,8 @@ package com.sistem.design.vote.manager.app.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -16,6 +18,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "votes")
 @IdClass(VoteId.class)
+@ToString(exclude = {"agenda"})
+@EqualsAndHashCode(of = {"userCpf", "agenda"})
 @Accessors(chain = true)
 public class Vote {
 
